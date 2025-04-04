@@ -1,12 +1,12 @@
 ### Table of Contents
 1. [Array Destructuring](#1-array-destructuring)
-2. [Template String/Template Literals](#2-template-string-template-literals)
+2. [Template String/Template Literals](#2-template-stringtemplate-literals)
 3. [let and const (Block Scope Variables)](#3-let-and-const-block-scope-variables)
 ---
 
 ## 1. Array Destructuring
 **Answer:**
-- Syntax that allows you to unpack variables from an array ito distinct elements in a concise and readable way
+- Syntax that allows you to unpack variables from an array into distinct elements in a concise and readable way
 
 **1.1 Basic**
 ```javascript {cmd=true}
