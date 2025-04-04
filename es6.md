@@ -1,6 +1,6 @@
 ### Table of Contents
-1. [Array Destructuring](#1-array-desctructuring)
-2. [Template String/Template Literals](#2-template-strings-template-literals)
+1. [Array Destructuring](#1-array-destructuring)
+2. [Template String/Template Literals](#2-template-string-template-literals)
 3. [let and const (Block Scope Variables)](#3-let-and-const-block-scope-variables)
 ---
 
