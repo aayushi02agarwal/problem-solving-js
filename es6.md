@@ -59,29 +59,26 @@ console.log(o);//4
 ---
 
 ## 2. Template String/Template Literals
-### **Answer:**
+**Answer:**
 - Used to embed expressions/variables inside string using backticks
 **2.1 String Interpolation**
 ```javascript {cmd=true}
 const name = "Aayushi";
 console.log(`My name is ${name}`);//My name is Aayushi
 ```
----
-### **2.2 Multi line**
+**2.2 Multi line**
 ```javascript {cmd=true}
 console.log(`I'm Aayushi,
 A software Developer!`);//I'm Aayushi,
                         //A software Developer!
 ```
----
-### **2.3 Expressions**
+**2.3 Expressions**
 ```javascript {cmd=true}
 const var1 = 2;
 const var2 = 3;
 console.log(`The sum of ${a} and ${b} is ${a+b}`);//The sum of 1 and 2 is 3
 ```
----
-### **2.4 Function Calls**
+**2.4 Function Calls**
 ```javascript {cmd=true}
 function greet(name) {
   return `Hello, ${name}!`;
@@ -89,8 +86,7 @@ function greet(name) {
 
 console.log(`${greet("Aayushi")}, welcome to JavaScript!`); //Hello, Aayushi!, welcome to JavaScript!
 ```
----
-### **2.5 tagged template literals**
+**2.5 tagged template literals**
 - Tagged templates allow processing a template literal with a function before returning the final output.
 ```javascript {cmd=true}
 function fun(name,age) {
