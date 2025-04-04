@@ -1,6 +1,6 @@
 ## Table of Contents
 1. [What is a Lexical Scoping?](#1-what-is-a-lexical-scoping)
-2. [Lexical Scoping and Closure?](#2-lexical-scoping-and-closure?)
+2. [Lexical Scoping and Closure?](#2-lexical-scoping-and-closure)
 
 ---
 
