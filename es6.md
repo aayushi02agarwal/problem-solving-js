@@ -61,6 +61,7 @@ console.log(o);//4
 ## 2. Template String/Template Literals
 **Answer:**
 - Used to embed expressions/variables inside string using backticks
+
 **2.1 String Interpolation**
 ```javascript {cmd=true}
 const name = "Aayushi";
