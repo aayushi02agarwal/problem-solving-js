@@ -128,6 +128,7 @@ click event with corresponding functions.
 - This can be achieved by adding a third argument to the eventListner - useCapture
 
 **Example(Event Bubbling):**
+```html 
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,6 +159,7 @@ click event with corresponding functions.
   </script>
 </body>
 </html>
+```
 
 - Here if we will click child the output will be:
 ```
@@ -180,7 +182,7 @@ document.querySelector("#child").addEventListener('click', () => { console.log("
 ```
 
 **Example(Event Capturing/Trickling):**
-
+```html 
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,6 +215,7 @@ document.querySelector("#child").addEventListener('click', () => { console.log("
   </script>
 </body>
 </html>
+```
 
 - Here if we will click child the output will be:
 ```
