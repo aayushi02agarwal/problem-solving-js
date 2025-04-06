@@ -118,10 +118,11 @@ xfun();
 
 ## 4. What is Bubbling and Capturing?
 **Answer:**
-- They are two ways of event propogation in the DOM tree. Let's say there are nested HTML elements. Each of them has a
-click event with corresponding functions.
+- They are two ways of event propogation in the DOM tree. Let's say there are nested HTML elements. Each of them has a click event with corresponding functions.
+
 **Event Bubling:**
 - If we trigger an event of a child component; first the function of child is called, then it will move up to parent, then grand-parent's.
+
 **Event Capturing/Trickling**
 - If we trigger an event of a child component; first the function of grand-parent is called, then it will move down to parent, till it reaches the child.
 
