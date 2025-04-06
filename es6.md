@@ -3,6 +3,7 @@
 2. [Template String/Template Literals](#2-template-stringtemplate-literals)
 3. [let and const (Block Scope Variables)](#3-let-and-const-block-scope-variables)
 4. [What is Bubbling and Capturing?](#4-what-is-bubbling-and-capturing)
+5. [Difference between for of and for in?](#5-difference-between-for-of-and-for-in)
 ---
 
 ## 1. Array Destructuring
@@ -234,7 +235,7 @@ Parent clicked
 Grandparent clicked
 ```
 
-- These operations are very heavy and cause performane issue. Let's see how we can stop the propagation at a particuler point of time
+- These operations are very heavy and cause performane issue. Let's see how we can stop the propagation at a particular point of time
 
 ```js
 document.querySelector("#grandparent").addEventListener('click', () => { console.log("Grandparent clicked"); }, true); //capturing
@@ -336,4 +337,19 @@ document.querySelector("#child").addEventListener('click', (e) => {
 - Here if we will click child the output will be:
 ```
 GrandParent clicked
+```
+
+### 5. Difference between for of and for in?
+**Answer:**
+Both the for..of and for..in commands iterate over lists, but the results they return are different: for..in returns a list of keys on the object being iterated, whereas for..of returns a list of values of the object's numeric attributes.
+```js
+let arr = [3, 4, 5];
+
+for (let i in arr) {
+   console.log(i); // "0", "1", "2",
+}
+
+for (let i of arr) {
+   console.log(i); // "3", "4", "5"
+}
 ```
