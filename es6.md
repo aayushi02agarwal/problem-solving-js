@@ -2,6 +2,7 @@
 1. [Array Destructuring](#1-array-destructuring)
 2. [Template String/Template Literals](#2-template-stringtemplate-literals)
 3. [let and const (Block Scope Variables)](#3-let-and-const-block-scope-variables)
+4. [What is Bubbling and Capturing?](#4-what-is-bubbling-and-capturing)
 ---
 
 ## 1. Array Destructuring
@@ -18,7 +19,7 @@ console.log(c);//3
 ```
 **1.2 Default values**
 ```javascript {cmd=true}
-const numbers2 = [1,2]; 
+const numbers2 = [1,2];
 const [a1,b1,c1=3] = numbers2;
 console.log(a1);//1
 console.log(b1);//2
@@ -71,18 +72,18 @@ console.log(`My name is ${name}`);//My name is Aayushi
 ```javascript {cmd=true}
 console.log(`I'm Aayushi,
 A software Developer!`);//I'm Aayushi,
-                        //A software Developer!
+//A software Developer!
 ```
 **2.3 Expressions**
 ```javascript {cmd=true}
 const var1 = 2;
 const var2 = 3;
-console.log(`The sum of ${a} and ${b} is ${a+b}`);//The sum of 1 and 2 is 3
+console.log(`The sum of ${var1} and ${var2} is ${var1+var2}`);//The sum of 1 and 2 is 3
 ```
 **2.4 Function Calls**
 ```javascript {cmd=true}
 function greet(name) {
-  return `Hello, ${name}!`;
+return `Hello, ${name}!`;
 }
 
 console.log(`${greet("Aayushi")}, welcome to JavaScript!`); //Hello, Aayushi!, welcome to JavaScript!
@@ -91,8 +92,8 @@ console.log(`${greet("Aayushi")}, welcome to JavaScript!`); //Hello, Aayushi!, w
 - Tagged templates allow processing a template literal with a function before returning the final output.
 ```javascript {cmd=true}
 function fun(name,age) {
-    return `My name is ${name.toUpperCase()}. I'm ${age}`;
-} 
+return `My name is ${name.toUpperCase()}. I'm ${age}`;
+}
 console.log(fun("aayushi",23)); //My name is AAYUSHI. I'm 23
 ```
 ---
@@ -101,16 +102,234 @@ console.log(fun("aayushi",23)); //My name is AAYUSHI. I'm 23
 **Answer:**
 ```javascript {cmd=true}
 function xfun() {
-    if(true)
-    {
-    let var3=3;
-    const var4=4;
-    var3=4;
-    // var4=6; //can't re-assign const 
-    }
-    console.log(var3); //var3 is not defined
-    console.log(var4); //var4 is not defined
+if(true)
+{
+let var3=3;
+const var4=4;
+var3=4;
+// var4=6; //can't re-assign const
+}
+console.log(var3); //var3 is not defined
+console.log(var4); //var4 is not defined
 }
 xfun();
 ```
 ---
+
+## 4. What is Bubbling and Capturing?
+**Answer:**
+- They are two ways of event propogation in the DOM tree. Let's say there are nested HTML elements. Each of them has a
+click event with corresponding functions.
+**Event Bubling:**
+- If we trigger an event of a child component; first the function of child is called, then it will move up to parent, then grand-parent's.
+**Event Capturing/Trickling**
+- If we trigger an event of a child component; first the function of grand-parent is called, then it will move down to parent, till it reaches the child.
+
+- This can be achieved by adding a third argument to the eventListner - useCapture
+
+**Example(Event Bubbling):**
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aayushi</title>
+  <style>
+    div {
+      min-width: 100px;
+      min-height: 100px;
+      padding: 30px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="grandparent">
+    <div id="parent">
+      <div id="child">
+
+      </div>
+    </div>
+  </div>
+  <script>
+    document.querySelector("#grandparent").addEventListener('click', () => { console.log("Grandparent clicked"); });
+    document.querySelector("#parent").addEventListener('click', () => { console.log("Parent clicked"); });
+    document.querySelector("#child").addEventListener('click', () => { console.log("Child clicked"); });
+  </script>
+</body>
+</html>
+
+- Here if we will click child the output will be:
+```
+Child clicked
+Parent clicked
+Grandparent clicked
+```
+- Here if we will click parent the output will be:
+```
+Parent clicked
+Grandparent clicked
+```
+- Here if we will click grandparent the output will be:
+```
+Grandparent clicked
+```
+- If we don't pass any third argument, by default event bubling happens(useCapture is false)
+```javascript
+document.querySelector("#child").addEventListener('click', () => { console.log("Child clicked"); }, false);
+```
+
+**Example(Event Capturing/Trickling):**
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aayushi</title>
+  <style>
+    div {
+      min-width: 100px;
+      min-height: 100px;
+      padding: 30px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="grandparent">
+    <div id="parent">
+      <div id="child">
+
+      </div>
+    </div>
+  </div>
+  <script>
+    document.querySelector("#grandparent").addEventListener('click', () => { console.log("Grandparent clicked"); }, true);
+    document.querySelector("#parent").addEventListener('click', () => { 
+      console.log("Parent clicked");  
+    }, true);
+    document.querySelector("#child").addEventListener('click', () => { console.log("Child clicked"); }, true);
+  </script>
+</body>
+</html>
+
+- Here if we will click child the output will be:
+```
+Grandparent clicked
+Parent clicked
+Child clicked
+```
+- Here if we will click parent the output will be:
+```
+Grandparent clicked
+Parent clicked
+```
+- Here if we will click grandparent the output will be:
+```
+Grandparent clicked
+```
+
+- These operations are very heavy and cause performane issue. Let's see how we can stop the propagation at a particuler point of time
+
+```js
+document.querySelector("#grandparent").addEventListener('click', () => { console.log("Grandparent clicked"); }, true); //capturing
+document.querySelector("#parent").addEventListener('click', () => { console.log("Parent clicked"); }, false); //bubbling
+document.querySelector("#child").addEventListener('click', () => { console.log("Child clicked"); }, true); //capturing
+```
+- Here if we will click child the output will be:
+```
+Grandparent clicked
+Child clicked
+Parent clicked
+```
+
+- According to w3c, first capturing happens then bubbling out happens, and callback functions are called as per the useCapture value.
+- First grandparent handler was called, then it went to parent. Here the flag is false so it won't be called, so it will move to child and because of true, capturing happens and the callback method was called.
+- After the capturing cycle is completed, bubbling cycles start, so parent is called.
+
+```js
+document.querySelector("#grandparent").addEventListener('click', () => { console.log("Grandparent clicked"); }, true); //capturing
+document.querySelector("#parent").addEventListener('click', () => { console.log("Parent clicked"); }, false); //bubbling
+document.querySelector("#child").addEventListener('click', () => { console.log("Child clicked"); }, false); //bubbling
+```
+- Here if we will click child the output will be:
+```
+Grandparent clicked
+Child clicked
+Parent clicked
+```
+- First, grandparent will be called as event capturing happens first. Then it will go to parent and see the flag is false, so it will move to child. It again sees false.
+- Once the target element is reached the events will be bubbled out. Now in the bubbling cycle, child will be called and then parent.
+- Here if we will click parent the output will be:
+```
+Grandparent clicked
+Parent clicked
+```
+
+**Stopping propagation: Event Bubbling**
+- When we write callback() inside our event listeners, we have access to event object(e). This has a method called stopPropagation().
+- e.stopPropagation() - It will stop the event propagation.
+```js
+document.querySelector("#grandparent").addEventListener('click', (e) => { console.log("Grandparent clicked"); }, false);
+document.querySelector("#parent").addEventListener('click', (e) => { 
+  console.log("Parent clicked"); 
+  e.stopPropagation();
+}, false); 
+document.querySelector("#child").addEventListener('click', (e) => { console.log("Child clicked"); }, false); 
+```
+- Here if we will click child the output will be:
+```
+Child clicked
+Parent clicked
+```
+
+```js
+document.querySelector("#grandparent").addEventListener('click', (e) => { console.log("Grandparent clicked"); }, false);
+document.querySelector("#parent").addEventListener('click', (e) => { 
+  console.log("Parent clicked"); 
+}, false); 
+document.querySelector("#child").addEventListener('click', (e) => { 
+  console.log("Child clicked"); 
+  e.stopPropagation();
+}, false); 
+```
+- Here if we will click child the output will be:
+```
+Child clicked
+```
+
+**Stopping propagation: Event Capturing**
+```js
+document.querySelector("#grandparent").addEventListener('click', (e) => { console.log("Grandparent clicked"); }, true);
+document.querySelector("#parent").addEventListener('click', (e) => { 
+  console.log("Parent clicked"); 
+}, true); 
+document.querySelector("#child").addEventListener('click', (e) => { 
+  console.log("Child clicked");
+   e.stopPropagation(); 
+}, true); 
+```
+- Here if we will click child the output will be:
+```
+GrandParent clicked
+Parent clicked
+Child clicked
+```
+
+```js
+document.querySelector("#grandparent").addEventListener('click', (e) => { 
+  console.log("Grandparent clicked"); 
+   e.stopPropagation(); 
+}, true);
+document.querySelector("#parent").addEventListener('click', (e) => { 
+  console.log("Parent clicked"); 
+}, true); 
+document.querySelector("#child").addEventListener('click', (e) => { 
+  console.log("Child clicked");
+}, true); 
+```
+- Here if we will click child the output will be:
+```
+GrandParent clicked
+```
