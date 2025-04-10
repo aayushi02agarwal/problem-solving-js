@@ -355,7 +355,7 @@ for (let i of arr) {
 }
 ```
 
-## 6.Symbols
+## 6. Symbols
 - Symbols are special primitive data type in js, introduced in ES6, which is used to make unique keys for objects to avoid name clashes
 ```js
 const symbol = Symbol();
