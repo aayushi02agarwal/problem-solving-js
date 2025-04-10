@@ -4,6 +4,7 @@
 3. [let and const (Block Scope Variables)](#3-let-and-const-block-scope-variables)
 4. [What is Bubbling and Capturing?](#4-what-is-bubbling-and-capturing)
 5. [Difference between for of and for in?](#5-difference-between-for-of-and-for-in)
+6. [Symbols](#6-symbols)
 ---
 
 ## 1. Array Destructuring
@@ -353,3 +354,70 @@ for (let i of arr) {
    console.log(i); // "3", "4", "5"
 }
 ```
+
+## 6.Symbols
+- Symbols are special primitive data type in js, introduced in ES6, which is used to make unique keys for objects to avoid name clashes
+```js
+const symbol = Symbol();
+console.log(symbol); //Symbol();
+```
+- The symbols are unique even if we pass same description
+```js
+const sym1 = Symbol('id');
+const sym2 = Symbol('id');
+console.log(sym1 === sym2);//false
+```
+**Symbol keys vs string keys:**
+- 1. Using keys as Strings
+```js
+const id1 = 'id';
+const id2 = 'id';
+const user = {
+  name: "xyz",
+  [id1]: 101
+}
+user[id2]=102;
+console.log(user);//{name: 'xyz', id: 102}
+```
+- 2. Using keys as Symbols
+```js
+const id1 = Symbol('id');
+const id2 = Symbol('id');
+const user = {
+  name: "xyz",
+  [id1]: 101
+}
+user[id2]=102;
+console.log(user); //{name: 'xyz', Symbol(id): 101, Symbol(id): 102}
+```
+
+**Symbol.for()**
+- While Symbole() creates unique Symbol, Symbol.for() allows reuse
+```js
+const id1 = Symbol.for('id');
+const id2 = Symbol.for('id');
+console.log(id1 === id2);//true
+```
+returns An existing symbol with the given key if found; otherwise, a new symbol is created and returned.
+
+**Private object properties**
+- Symbols are used to create private properties for an object which can't be accessed/modified by direct iteration.
+```js
+const PASSWORD = Symbol('password');
+const user = {
+  name: "xyz",
+  [PASSWORD]: "secretKey"
+}
+console.log(user.name);//xyz
+console.log(user[PASSWORD]);//secretKey
+
+for(let key in user)
+{
+  console.log(key);
+}// name - it won't give Symbol key
+```
+
+**Advantages**
+- 1. Avoid name clashes
+- 2. Ensure Privacy - not accesssable via iteration
+- 3. Prevent accidental property modification
