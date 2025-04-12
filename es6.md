@@ -5,6 +5,7 @@
 4. [What is Bubbling and Capturing?](#4-what-is-bubbling-and-capturing)
 5. [Difference between for of and for in?](#5-difference-between-for-of-and-for-in)
 6. [Symbols](#6-symbols)
+7. [Babel](#7-babel)
 ---
 
 ## 1. Array Destructuring
@@ -340,7 +341,7 @@ document.querySelector("#child").addEventListener('click', (e) => {
 GrandParent clicked
 ```
 
-### 5. Difference between for of and for in?
+## 5. Difference between for of and for in?
 **Answer:**
 Both the for..of and for..in commands iterate over lists, but the results they return are different: for..in returns a list of keys on the object being iterated, whereas for..of returns a list of values of the object's numeric attributes.
 ```js
@@ -354,6 +355,7 @@ for (let i of arr) {
    console.log(i); // "3", "4", "5"
 }
 ```
+---
 
 ## 6. Symbols
 - Symbols are special primitive data type in js, introduced in ES6, which is used to make unique keys for objects to avoid name clashes
@@ -421,3 +423,8 @@ for(let key in user)
 - 1. Avoid name clashes
 - 2. Ensure Privacy - not accesssable via iteration
 - 3. Prevent accidental property modification
+---
+
+## 7. Babel
+- Babel is an open source transpiler that converts ES6+ version code to oldes compatible version of js that can be run by previous js engines.
+- For example - Arrow functions in ES6 are converted to normal function declarations
