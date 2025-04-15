@@ -6,6 +6,7 @@
 5. [Difference between for of and for in?](#5-difference-between-for-of-and-for-in)
 6. [Symbols](#6-symbols)
 7. [Babel](#7-babel)
+8. [Object Destructuring](#8-object-destructuring)
 ---
 
 ## 1. Array Destructuring
@@ -428,3 +429,68 @@ for(let key in user)
 ## 7. Babel
 - Babel is an open source transpiler that converts ES6+ version code to oldes compatible version of js that can be run by previous js engines.
 - For example - Arrow functions in ES6 are converted to normal function declarations
+---
+
+
+## 8. Object Destructuring
+**Answer:**
+Syntax that allows you to unpack properties from an object into distinct variables in a concise and readable way.
+**1.1 Basic:**
+```js
+const person = {name: "Aayushi", age: 23};
+const {name,age} = person;
+console.log(name); //Aayushi
+console.log(age); //23
+```
+**1.2 Renaming:**
+```js
+const person = {name: "Aayushi", age: 23};
+const {name: personName, age: personAge};
+console.log(personName);//Aayushi
+console.log(personAge);//23
+```
+**1.3 Nested:**
+```js
+const person = {name: "Aayushi", age: 23, address: {
+  city: "Bangalore",
+  state: "Karnataka"
+}};
+const {name, address: {city, state}} = person;
+console.log(name);//Aayushi
+console.log(city);//Bangalore
+console.log(state);//Karnataka
+```
+**1.4 Default values:**
+```js
+const person = {name: "Aayushi"};
+const {name,age=23} = person;
+console.log(name);//Aayushi
+console.log(age);//23;
+```
+**1.5 Rest:**
+```js
+const person = {name: "Aayushi",age: 23,city: "Bangalore"};
+const {name,...rest} = person;
+console.log(name);//Aayushi
+console.log(rest);//{age: 23, city: 'Bangalore'}
+```
+**1.6 Function parameters:**
+```js
+function greet({name,age}) {
+  console.log(`My name is ${name}. I'm ${age} years old`);
+}
+const person = {name: "Aayushi", age: 23};
+greet(person);//My name is Aayushi. I'm 23 years old
+```
+**1.7 Object with array destructuring:**
+```js
+const data = {
+  name: "Aayushi",
+  scores: [95,93,90]
+}
+const {name,scores:[first,second,third]} = data;
+console.log(name);//Aayushi
+console.log(first);//95
+console.log(second);//93
+console.log(third);//90
+``` 
